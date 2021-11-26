@@ -3,9 +3,22 @@
     "EXPERIMENTAL_FEATURE_WARNING",
 )
 
+import org.javamoney.moneta.Money
+
+data class Wager(
+    val bet: Roulette.Bet,
+    val amount: Money,
+)
+
 class Roulette {
 
     fun spins() = generateSequence { Number.values().random() }
+
+    enum class Bet(numbers: List<Number>) {
+
+        BLACK(Number.values().filter { it.color == Color.BLACK }),
+        RED(Number.values().filter { it.color == Color.RED }),
+    }
 
     enum class Number(val color: Color) {
 
